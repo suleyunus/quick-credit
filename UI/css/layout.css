@@ -44,15 +44,3 @@ nav, div {
 	margin-left: 5%;
 	margin-right: 5%;
 }
-
-/*  to remove */
-body > * {
-	border: 1px solid #000;
-}
-
-@media screen and (min-width: 35rem) {
-	.logo {
-		max-width: 8em;
-	}
-	
-}

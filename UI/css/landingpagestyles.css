@@ -1,0 +1,44 @@
+body {
+	background: url("../images/background.jpg");
+	background-size: cover;
+	color: var(--white);
+}
+
+h2 {
+	font-size: 2em;
+}
+
+a {
+	color: var(--white);
+}
+
+.btn {
+	background: var(--white);
+	color: var(--black);
+	padding: .7em 4em;
+	border-radius: 2px;
+}
+
+.btn:hover {
+	background: var(--green);
+	color: var(--white);
+}
+
+@media screen and (min-width: 500px ) {
+	h1 { font-size: 1.2em; }
+	h2 { font-size: 2.2em; }
+
+	#hero {
+		grid-column: 1 / span 10;
+	}	
+}
+
+@media screen and (min-width: 870px) {
+	h2 { font-size: 2.6em; }
+	h1 { font-size: 1.4em; }
+
+	#hero {
+		grid-column: 1/ span 8;
+		margin-left: 7%;
+	}
+}

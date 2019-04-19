@@ -1,7 +1,6 @@
 /* Font -------------------------------------------------------------- */
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,800');
-
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,900');
 
 /* Reset Browser Styles ---------------------------------------------- */
 
@@ -10,8 +9,16 @@
 	margin: 0;
 	border: 0;
 	padding: 0;
-	font-family: "Montserrat", sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-size: 100%;
 	vertical-align: baseline;
 	background: transparent;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
 }
