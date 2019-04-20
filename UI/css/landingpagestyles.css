@@ -35,7 +35,7 @@ a {
 
 @media screen and (min-width: 870px) {
 	h2 { font-size: 2.6em; }
-	h1 { font-size: 1.4em; }
+	h1 { font-size: 1.6em; }
 
 	#hero {
 		grid-column: 1/ span 8;
