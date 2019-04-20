@@ -1,4 +1,4 @@
-input {
+input, .submitbtn {
 	display: block;
 }
 
@@ -28,8 +28,16 @@ input:focus {
 	border: 1px solid #b1e1e4;
 }
 
+/* to edit this when incorporating functionality */
 .submitbtn {
 	background: var(--green);
 	color: var(--white);
 	padding-right: 30px;
+	padding-left: 30px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+
 }
+
+/* end --------------------- */
