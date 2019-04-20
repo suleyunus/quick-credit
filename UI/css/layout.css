@@ -1,0 +1,46 @@
+/* Grid Layout ------------------------------------------ */
+
+body {
+	min-height: 100vh;
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	grid-gap: 0.625em;
+}
+
+body > * {
+	grid-column: 1 / span 12;
+}
+
+footer {
+	align-self: end;
+	text-align: center;
+}
+
+
+/* Navigation Layout -------------------------------- */
+
+nav {
+	display: flex;
+	align-items: center;
+}
+
+.menu {
+	margin-left: auto;
+}
+
+img {
+	border: 1px solid #000000;
+}
+
+
+.logo {
+	display: inline-block;
+}
+
+
+/*Margins ----------------------------------------------- */
+
+nav, div {
+	margin-left: 5%;
+	margin-right: 5%;
+}
