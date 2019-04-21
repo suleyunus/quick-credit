@@ -1,0 +1,27 @@
+table {
+	width: 60%;
+	margin: auto;
+	border-collapse: collapse;
+}
+
+th {
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-size: 90%;
+	border-bottom: 2px solid #000000;
+	border-top: 1px solid #111;
+}
+
+th, td {
+	padding: 7px 10px 10px 10px;
+	text-align: left;
+}
+
+table tr:nth-child(even) {
+	background-color: #efefef;
+}
+
+tr:hover {
+	background-color: #c3e6e5;
+}
+
