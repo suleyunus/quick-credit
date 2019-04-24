@@ -27,6 +27,10 @@
 	margin-left: auto;
 }
 
+.header nav ul a {
+	color: var(--white);
+}
+
 
 .sidebar {
 	position: absolute;
