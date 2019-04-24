@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<title>Dashboard</title>
 	<meta charset="utf-8">
@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
 	<link rel="stylesheet" type="text/css" href="../css/typography.css">
 	<link rel="stylesheet" type="text/css" href="css/dashboardstyles.css">
+	<link rel="stylesheet" type="text/css" href="../css/tablestyles.css">
 </head>
 <body>
 	<div class="header">
@@ -15,7 +16,7 @@
 		<a href="dashboard.html"><img src="../images/logo.png" alt="logo" role="banner"></a>
 
 		<ul>
-			<li><a href="../index.html">Log Out</a></li>
+			<li>Log Out</li>
 		</ul>
 		</nav>
 	</div>
@@ -24,18 +25,24 @@
 		<ul>
 			<li><a href="dashboard.html">Dashboard</a></li>
 			<li><a href="users.html">Users</a></li>
- ft-view-loan-applications-165494847
 			<li><a href="loanapplications.html">Loan Applications</a></li>
 			<li><a href="currentloans.html">CurrentLoans</a></li>
-			<li><a href="paidloans.html">Paid Loans</a></li
-			<li><a href="loans.html">Loans</a></li> develop
+			<li><a href="paidloans.html">Paid Loans</a></li>
 			<li><a href="postpayment.html">Post Payment</a></li>
 		</ul>
 		
 	</div>
 
 	<div class="content">
-		<p>No news</p>
+		<table>
+			<tr>
+				<th scope="col">Client Name</th>
+				<th scope="col">Client ID</th>
+				<th scope="col">Loan ID</th>
+				<th scope="col">Loan Amount</th>
+				<th scope="col">Date Applied</th>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>
