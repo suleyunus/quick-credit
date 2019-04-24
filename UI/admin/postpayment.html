@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Dashboard</title>
+	<title>Post Payment</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<link rel="icon" type="image/ico" href="../images/logoicon.png">
 	<link rel="stylesheet" type="text/css" href="../css/reset.css">
 	<link rel="stylesheet" type="text/css" href="../css/typography.css">
 	<link rel="stylesheet" type="text/css" href="css/dashboardstyles.css">
+	<link rel="stylesheet" type="text/css" href="../css/formstyles.css">
 </head>
 <body>
 	<div class="header">
@@ -31,7 +32,21 @@
 	</div>
 
 	<div class="content">
-		<p>No news</p>
+		<form action="#">
+			<label>
+				<p>Client ID</p>
+				<input type="text" name="clientID">
+			</label>
+			<label>
+				<p>Loan ID</p>
+				<input type="text" name="loanID">
+			</label>
+			<label>
+				<p>Amount</p>
+				<input type="text" name="loanAmount">
+			</label>
+			<a href="#" class="submitbtn">Post</a>
+		</form>
 	</div>
 </body>
 </html>
