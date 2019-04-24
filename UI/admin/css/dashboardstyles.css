@@ -1,0 +1,54 @@
+/* CSS variables --------------------- */
+:root {
+	--black: #000000;
+	--light-grey: #303030;
+	--white: #ffffff;
+	--off-white: #FFE3F1;
+	--blue: #00C9C8;
+}
+
+.header {
+	position: absolute;
+	background-color: var(--black);
+	width: 100%;
+	height: 60px;
+	color: var(--white);
+	z-index: 5;
+}
+
+.header nav {
+	display: flex;
+	margin: 0 5%;
+	align-items: center;
+	padding-top: 5px;
+}
+
+.header nav ul {
+	margin-left: auto;
+}
+
+
+.sidebar {
+	position: absolute;
+	padding-top: 60px;
+	width: 250px;
+	height: 100vh;
+	background-color: var(--light-grey);
+	color: var(--white);
+	z-index: 4;
+}
+
+.sidebar ul li {
+	padding: 20px 20px;
+	border-bottom: .1px solid var(--black);
+}
+
+.sidebar ul li a {
+	color: var(--white);
+}
+
+
+.content {
+	padding-top: 70px;
+	margin-left: 255px;
+}
