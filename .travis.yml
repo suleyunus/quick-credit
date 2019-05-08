@@ -1,8 +1,28 @@
+sudo: false
+env:
+  global:
+    - CC_TEST_REPORTER_ID=d06eaded1a5cb07d50cc23f85319fdfa4519964fe16857220772499197e73550
+
 language: node_js
 
 node_js:
--10.15.1
 -node
 
+cache:
+  directories:
+    - 'node_modules'
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
-npm run eslint
+npm run test
+
+after_success:
+  - npm run coveralls
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+notifications:
+  email:false
