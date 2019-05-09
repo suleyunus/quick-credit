@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "eslint"
+    "eslint": "eslint",
+    "start": "nodemon --exec babel-node index.js",
+    "build": "babel server --out-dir dist",
+    "serve": "node dist/server.js"
   },
   "repository": {
     "type": "git",
