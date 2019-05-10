@@ -8,7 +8,7 @@ const users = [
     address: 'KG 5 Avenue',
     status: 'unverified',
     isAdmin: false,
-    joined: new Date()
+    joined: new Date(),
   },
   {
     id: 2,
@@ -19,8 +19,8 @@ const users = [
     address: 'KG 7 Avenue',
     status: 'unverified',
     isAdmin: false,
-    joined: new Date()
-  }
+    joined: new Date(),
+  },
 ];
 
 export default users;
