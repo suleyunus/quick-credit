@@ -3,11 +3,22 @@ import loans from '../models/loansDB';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.status(200).json({
-    status: 200,
-    data: loans,
-  });
+router.get('/', (req, res, next) => {
+  if (Object.keys(req.query).length === 0) {
+    res.status(200).json({
+      status: 200,
+      data: loans,
+    });
+  } else if (req.query.repaid === 'false') {
+    const currentLoans = loans.filter(loan => loan.status === 'approved'
+    && loan.repaid === false);
+
+    res.status(200).json({
+      status: 200,
+      data: currentLoans,
+    });
+  }
+  next();
 });
 
 router.get('/:loanID', (req, res) => {
@@ -27,19 +38,19 @@ router.get('/:loanID', (req, res) => {
   }
 });
 
-router.get('/?status=approved&repaid=false', (req, res) => {
-  // const { status, repaid } = req.query;
-  if (req.query.status === loans[0].status
-    && req.query.repaid === Boolean(loans[0].repaid)) {
-    res.status(200).json({
-      status: 200,
-      data: loans[0],
-    });
-  } else {
-    res.status(404).json({
-      message: 'Not Found',
-    });
-  }
-});
+// router.get('/?status=approved&repaid=false', (req, res) => {
+//   // const { status, repaid } = req.query;
+//   if (req.query.status === loans[0].status
+//     && req.query.repaid === Boolean(loans[0].repaid)) {
+//     res.status(200).json({
+//       status: 200,
+//       data: loans[0],
+//     });
+//   } else {
+//     res.status(404).json({
+//       message: 'Not Found',
+//     });
+//   }
+// });
 
 export default router;
