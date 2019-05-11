@@ -17,6 +17,14 @@ router.get('/', (req, res, next) => {
       status: 200,
       data: currentLoans,
     });
+  } else if (req.query.repaid === 'true') {
+    const paidLoans = loans.filter(loan => loan.status === 'approved'
+    && loan.repaid === true);
+
+    res.status(200).json({
+      status: 200,
+      data: paidLoans,
+    });
   }
   next();
 });
