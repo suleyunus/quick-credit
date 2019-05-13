@@ -11,6 +11,7 @@ describe('API endpoint /api/v1/loans', () => {
       .get('/api/v1/loans')
       .then(function (res) {
         expect(res).to.have.status(200);
+        expect(res).to.be.json;
       });
   });
 });
