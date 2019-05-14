@@ -12,16 +12,31 @@ a {
 	color: var(--white);
 }
 
-.btn {
-	background: var(--white);
-	color: var(--black);
-	padding: .7em 4em;
+.menu a {
+	background-color: #B87C4C;
+	padding: 8px 25px;
 	border-radius: 2px;
+	font-size: 1em;
+	letter-spacing: 0.05em;
 }
 
-.btn:hover {
-	background: var(--green);
+.btn {
+	background: #B87C4C;
 	color: var(--white);
+	padding: .7em 4em;
+	border-radius: 2px;
+	letter-spacing: 0.05em;
+}
+
+.btn:hover,
+.menu a:hover {
+	background: var(--white);
+	color: var(--black);
+}
+
+.footer {
+	font-weight: 900;
+	color: #B87C4C;
 }
 
 @media screen and (min-width: 500px ) {
@@ -30,7 +45,7 @@ a {
 
 	#hero {
 		grid-column: 1 / span 10;
-	}	
+	}
 }
 
 @media screen and (min-width: 870px) {
@@ -40,5 +55,9 @@ a {
 	#hero {
 		grid-column: 1/ span 8;
 		margin-left: 7%;
+	}
+
+	#hero h2 {
+		letter-spacing: 0.008em;
 	}
 }
