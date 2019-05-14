@@ -1,5 +1,4 @@
 import express from 'express';
-import check from 'express-validator';
 import loansModel from '../models/loans';
 
 const router = express.Router();
@@ -35,25 +34,17 @@ router.get('/:loanID', (req, res) => {
   const id = parseInt(req.params.loanID, 10);
   const specificLoan = loansModel.getLoanByID(id);
 
-  if (specificLoan !== []) {
-    res.status(200).json({
-      status: 200,
-      data: specificLoan,
-    });
-  } else {
+  if (!specificLoan) {
     res.status(404).json({
       status: 404,
       message: 'Not Found',
     });
+  } else {
+    res.status(200).json({
+      status: 200,
+      data: specificLoan,
+    });
   }
-});
-
-router.post('/', (req, res) => {
-  const postedLoan = loansModel.postLoan(req.body);
-  res.status(200).json({
-    status: 200,
-    data: postedLoan,
-  });
 });
 
 export default router;

@@ -25,16 +25,16 @@ class Loans {
       interest: interestAmount,
       dateCreated: moment.now(),
     };
-    this.users.push(newLoan);
+    this.loans.push(newLoan);
     return newLoan;
   }
 
   getAllLoans() {
-    return this.users;
+    return this.loans;
   }
 
   getLoanByID(id) {
-    return this.users.find(user => user.id === id);
+    return this.loans.find(loan => loan.loanID === id);
   }
 }
 
