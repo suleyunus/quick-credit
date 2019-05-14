@@ -47,4 +47,13 @@ router.get('/:loanID', (req, res) => {
   }
 });
 
+router.post('/', (req, res, next) => {
+  const postedLoan = loansModel.postLoan(req.body);
+  res.status(200).json({
+    status: 200,
+    data: postedLoan,
+  });
+  next();
+});
+
 export default router;
