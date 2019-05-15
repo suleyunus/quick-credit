@@ -30,7 +30,6 @@ p {
 	font-size: 1em;
 }
 
-
 @media screen and (min-width: 500px) {
 	#amount, #term {
 		width: 60%;
