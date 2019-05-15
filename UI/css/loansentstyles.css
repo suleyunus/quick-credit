@@ -1,0 +1,16 @@
+.loansent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1em;
+}
+
+.loansent i {
+    display: block;
+    color: var(--green);
+    margin-bottom: 30px;
+}
+
+.loan p {
+    font-weight: 400;
+}
