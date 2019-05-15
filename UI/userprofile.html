@@ -9,8 +9,9 @@
 	<link rel="stylesheet" type="text/css" href="css/layout.css">
 	<link rel="stylesheet" type="text/css" href="css/typography.css">
 	<link rel="stylesheet" type="text/css" href="css/navbarlayout.css">
-	<link rel="stylesheet" type="text/css" href="css/applyloanstyles.css">
+	<link rel="stylesheet" type="text/css" href="css/formstyles.css">
 	<link rel="stylesheet" type="text/css" href="css/togglemenustyles.css">
+	<link rel="stylesheet" type="text/css" href="css/applyloanstyles.css">
 </head>
 <body>
 
@@ -27,10 +28,18 @@
 
 	<form action="#" class="slidecontainer">
 		<h1>Get Loan</h1>
-		<p>Amount</p>
-		<input type="range" min="1" max="50000" step="1000" id="amount" value="0">
-		<p>Term</p>
-		<input type="range" min="1" max="30" id="term" value="0">
+		<label>
+			<p>Tenor</p>
+			<input type="text" name="tenor" placeholder="Term of loan">
+		</label>
+		<label>
+			<p>Amount</p>
+			<input type="text" name="amount" placeholder="Amount being requested">
+		</label>
+		<div class="loanOutput">
+			<p>Installment:</p>
+			<p>Interest:</p>
+		</div>
 		<a href="loansent.html" class="submitbtn">Apply</a>
 	</form>
 
