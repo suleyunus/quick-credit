@@ -1,49 +1,6 @@
-input {
-	display: block;
-}
-
-form {
-	display: flex;
-	flex-direction: column;
-}
-
-form > * {
-	align-self: center;
-}
-
-#amount, #term {
-	margin-bottom: 60px;
-	width: 70%;
-}
-
-.submitbtn {
-	background: var(--green);
-	color: var(--white);
-	padding-right: 30px;
-	padding-left: 30px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	margin-bottom: 30px;
-}
-
-p {
-	font-size: 1em;
-}
-
-@media screen and (min-width: 500px) {
-	#amount, #term {
-		width: 60%;
-	}
-}
-
-@media screen and (min-width: 700px) {
-	#amount, #term {
-		width: 50%;
-	}
-}
-
-@media screen and (min-width: 900px) {
-	#amount, #term {
-		width: 40%;
-	}
+.loanOutput {
+	text-align: right;
+	padding: 15px 45px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
