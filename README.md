@@ -17,6 +17,7 @@ This project was developed with:
 * JavaScript
 * HTML
 * CSS
+* JavaScript Objects as Database
 
 ## Code Style
 
