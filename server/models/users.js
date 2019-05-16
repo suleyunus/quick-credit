@@ -28,6 +28,23 @@ class Users {
   findUser(input) {
     return this.users.find(user => user.email === input);
   }
+
+  updateVerificationStatus(newStatus, userObject) {
+    const updatedUser = {
+      id: userObject.id,
+      email: userObject.email,
+      firstName: userObject.firstName,
+      lastName: userObject.lastName,
+      password: userObject.password,
+      address: userObject.address,
+      status: newStatus,
+      isAdmin: false,
+      dateJoined: userObject.dateJoined,
+      dateVerified: moment.now(),
+    };
+    this.users.splice(userObject.id - 1, 1, updatedUser);
+    return updatedUser;
+  }
 }
 
 export default new Users();
