@@ -24,6 +24,10 @@ class Users {
     this.users.push(newUser);
     return newUser;
   }
+
+  finduser(input) {
+    return this.users.find(user => user.email === input.email);
+  }
 }
 
 export default new Users();
