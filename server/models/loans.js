@@ -36,6 +36,25 @@ class Loans {
   getLoanByID(id) {
     return this.loans.find(loan => loan.loanID === id);
   }
+
+  updateLoanStatus(newStatus, loanObject) {
+    const updatedLoan = {
+      loanID: loanObject.loanID,
+      firstName: loanObject.firstName,
+      lastName: loanObject.lastName,
+      email: loanObject.email,
+      tenor: loanObject.tenor,
+      amount: loanObject.amount,
+      paymentInstallment: loanObject.paymentInstallment,
+      status: newStatus,
+      balance: loanObject.balance,
+      interest: loanObject.interest,
+      dateCreated: loanObject.dateCreated,
+      dateModified: moment.now(),
+    };
+    this.loans.splice(loanObject.loanID - 1, 1, updatedLoan);
+    return updatedLoan;
+  }
 }
 
 export default new Loans();
