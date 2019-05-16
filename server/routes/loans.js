@@ -3,7 +3,7 @@ import loansModel from '../models/loans';
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   const allLoans = loansModel.getAllLoans();
   if (Object.keys(req.query).length === 0) {
     res.status(200).json({
@@ -27,7 +27,6 @@ router.get('/', (req, res, next) => {
       data: paidLoans,
     });
   }
-  next();
 });
 
 router.get('/:loanID', (req, res) => {
@@ -47,13 +46,38 @@ router.get('/:loanID', (req, res) => {
   }
 });
 
-router.post('/', (req, res, next) => {
-  const postedLoan = loansModel.postLoan(req.body);
-  res.status(200).json({
-    status: 200,
-    data: postedLoan,
-  });
-  next();
+router.post('/', (req, res) => {
+  if (!req.body.amount && !req.body.tenor) {
+    res.status(400).json({
+      status: 400,
+      message: 'Bad Request',
+    });
+  } else {
+    const postedLoan = loansModel.postLoan(req.body);
+    res.status(200).json({
+      status: 200,
+      data: postedLoan,
+    });
+  }
+});
+
+router.patch('/:loanID', (req, res) => {
+  const id = parseInt(req.params.loanID, 10);
+  const loan = loansModel.getLoanByID(id);
+
+  if (!loan) {
+    res.status(404).json({
+      status: 404,
+      message: 'No loan matches that ID',
+    });
+  } else {
+    const loanStatus = req.body.status;
+    const updatedLoan = loansModel.updateLoanStatus(loanStatus, loan);
+    res.status(200).json({
+      status: 200,
+      data: updatedLoan,
+    });
+  }
 });
 
 export default router;
