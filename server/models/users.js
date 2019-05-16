@@ -25,8 +25,8 @@ class Users {
     return newUser;
   }
 
-  finduser(input) {
-    return this.users.find(user => user.email === input.email);
+  findUser(input) {
+    return this.users.find(user => user.email === input);
   }
 }
 
