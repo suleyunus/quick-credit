@@ -22,6 +22,5 @@ app.use('/api/v1/loans', loanRoutes);
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT);
-console.log(`app running on port ${PORT}`);
 
 export default app;
