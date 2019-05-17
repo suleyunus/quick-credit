@@ -1,5 +1,6 @@
 import express from 'express';
 import loansModel from '../models/loans';
+import authControl from '../middlewares/authcontroller';
 
 const router = express.Router();
 
@@ -46,14 +47,14 @@ router.get('/:loanID', (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
+router.post('/', authControl, (req, res) => {
   if (!req.body.amount && !req.body.tenor) {
     res.status(400).json({
       status: 400,
       message: 'Bad Request',
     });
   } else {
-    const postedLoan = loansModel.postLoan(req.body);
+    const postedLoan = loansModel.postLoan(req.body, req.userData);
     res.status(200).json({
       status: 200,
       data: postedLoan,

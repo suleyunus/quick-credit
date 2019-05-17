@@ -9,14 +9,14 @@ class Loans {
     return (this.loans.length + 1);
   }
 
-  postLoan(input) {
+  postLoan(input, userDetails) {
     const interestRate = 0.05;
     const interestAmount = interestRate * input.amount;
     const newLoan = {
       loanID: this.generateID(),
-      firstName: '',
-      lastName: '',
-      email: '',
+      firstName: userDetails.firstName,
+      lastName: userDetails.lastName,
+      email: userDetails.email,
       tenor: input.tenor,
       amount: input.amount,
       paymentInstallment: ((input.amount + interestAmount) / input.tenor),
