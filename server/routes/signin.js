@@ -1,4 +1,6 @@
 import express from 'express';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import usersModel from '../models/users';
 
 const router = express.Router();
@@ -11,17 +13,28 @@ router.post('/', (req, res) => {
       status: 404,
       message: 'Account not found',
     });
-  } else if (req.body.password === user.password) {
-    res.status(200).json({
-      status: 200,
-      data: user,
-    });
-  } else {
-    res.status(401).json({
+  }
+
+  bcrypt.compare(req.body.password, user.password, (err, result) => {
+    if (err) {
+      return res.status(401).json({
+        status: 401,
+        message: 'Unauthorized',
+      });
+    }
+    if (result) {
+      const token = jwt.sign(user.email, process.env.JWT_KEY);
+      user.token = token;
+      return res.status(200).json({
+        status: 200,
+        data: user,
+      });
+    }
+    return res.status(401).json({
       status: 401,
       message: 'Unauthorized',
     });
-  }
+  });
 });
 
 export default router;
