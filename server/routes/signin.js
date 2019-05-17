@@ -23,7 +23,8 @@ router.post('/', (req, res) => {
       });
     }
     if (result) {
-      const token = jwt.sign(user.email, process.env.JWT_KEY);
+      const { email, firstName, lastName } = user;
+      const token = jwt.sign({ email, firstName, lastName }, process.env.JWT_KEY);
       user.token = token;
       return res.status(200).json({
         status: 200,
