@@ -56,3 +56,9 @@
 	padding-top: 70px;
 	margin-left: 255px;
 }
+
+@media screen and (max-width: 600px) {
+	.sidebar {
+		width: 125px;
+	}
+}
