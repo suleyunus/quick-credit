@@ -1,4 +1,5 @@
 import loansModel from '../models/loans';
+import repaymentsModel from '../models/Repayments';
 
 class LoansControllers {
   static getLoans(req, res) {
@@ -79,21 +80,29 @@ class LoansControllers {
   }
 
   static createRepayment(req, res) {
-    const paidAmount = parseInt(req.body.paidAmount, 10);
+    const { paidAmount } = req.body;
     const id = parseInt(req.params.loanID, 10);
-    const loan = loansModel.getRepaymentByID(id);
+    const repayment = repaymentsModel.getRepaymentByID(id);
 
-    if (!loan) {
-      res.status(404).json({
-        status: 404,
-        message: 'No Loan Matches that ID',
-      });
+    if (!repayment) {
+      const createNewRepayment = loansModel.getLoanByID(id);
+      if (!createNewRepayment) {
+        res.status(404).json({
+          status: 404,
+          message: 'No loan matches that ID',
+        });
+      } else {
+        const createdRepayment = repaymentsModel.createRepayment(createNewRepayment, paidAmount);
+        res.status(201).json({
+          status: 201,
+          data: createdRepayment,
+        });
+      }
     } else {
-      const newBalance = parseInt(loan.balance, 10) - paidAmount;
-      const updatedRepayment = loansModel.postRepayment(loan, paidAmount, newBalance);
-      res.status(200).json({
+      const newRepayment = repaymentsModel.postRepayment(repayment, paidAmount);
+      res.status(201).json({
         status: 200,
-        data: updatedRepayment,
+        data: newRepayment,
       });
     }
   }
