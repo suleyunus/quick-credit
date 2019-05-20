@@ -106,6 +106,23 @@ class LoansControllers {
       });
     }
   }
+
+  static repaymentHistory(req, res) {
+    const id = parseInt(req.params.loanID, 10);
+    const history = repaymentsModel.getRepaymentByID(id);
+
+    if (!history) {
+      res.status(404).json({
+        status: 404,
+        message: 'No repayments found for that ID',
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        data: history,
+      });
+    }
+  }
 }
 
 export default LoansControllers;
