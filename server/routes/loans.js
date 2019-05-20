@@ -14,4 +14,6 @@ router.patch('/:loanID', loansControllers.updateLoanStatus);
 
 router.post('/:loanID/repayment', loansControllers.createRepayment);
 
+router.get('/:loanID/repayments', loansControllers.repaymentHistory);
+
 export default router;
