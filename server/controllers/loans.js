@@ -77,6 +77,26 @@ class LoansControllers {
       });
     }
   }
+
+  static createRepayment(req, res) {
+    const paidAmount = parseInt(req.body.paidAmount, 10);
+    const id = parseInt(req.params.loanID, 10);
+    const loan = loansModel.getRepaymentByID(id);
+
+    if (!loan) {
+      res.status(404).json({
+        status: 404,
+        message: 'No Loan Matches that ID',
+      });
+    } else {
+      const newBalance = parseInt(loan.balance, 10) - paidAmount;
+      const updatedRepayment = loansModel.postRepayment(loan, paidAmount, newBalance);
+      res.status(200).json({
+        status: 200,
+        data: updatedRepayment,
+      });
+    }
+  }
 }
 
 export default LoansControllers;
