@@ -12,4 +12,6 @@ router.post('/', authControl, loansControllers.createLoan);
 
 router.patch('/:loanID', loansControllers.updateLoanStatus);
 
+router.post('/:loanID/repayment', loansControllers.createRepayment);
+
 export default router;

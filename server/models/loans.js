@@ -3,6 +3,7 @@ import moment from 'moment';
 class Loans {
   constructor() {
     this.loans = [];
+    this.repayments = this.loans.filter(loan => loan.status === 'approved');
   }
 
   generateID() {
@@ -54,6 +55,24 @@ class Loans {
     };
     this.loans.splice(loanObject.loanID - 1, 1, updatedLoan);
     return updatedLoan;
+  }
+
+  postRepayment(loan, paidAmount, newBalance) {
+    const index = this.repayments.findIndex(repayment => repayment.loanID === loan.loanID);
+    const newRepayment = {
+      id: loan.id,
+      loanID: loan.loanID,
+      dateCreated: loan.dateCreated,
+      amount: loan.amount,
+      paidAmount,
+      balance: newBalance,
+    };
+    this.repayments.splice(index, 1, newRepayment);
+    return newRepayment;
+  }
+
+  getRepaymentByID(id) {
+    return this.repayments.find(repayment => repayment.LoanID === id);
   }
 }
 
