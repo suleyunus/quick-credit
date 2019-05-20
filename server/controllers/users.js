@@ -1,4 +1,4 @@
-import usersModel from '../models/Users';
+import usersModel from '../models/users';
 
 class UpdateVerification {
   static verifyStatus(req, res) {

@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import usersModel from '../models/Users';
+import usersModel from '../models/users';
 
 class Signin {
   static login(req, res) {

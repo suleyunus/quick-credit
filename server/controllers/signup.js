@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import usersModel from '../models/Users';
+import usersModel from '../models/users';
 
 class Signup {
   static register(req, res) {

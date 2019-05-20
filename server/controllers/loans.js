@@ -1,4 +1,4 @@
-import loansModel from '../models/Loans';
+import loansModel from '../models/loans';
 
 class LoansControllers {
   static getLoans(req, res) {
