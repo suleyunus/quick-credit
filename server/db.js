@@ -13,17 +13,16 @@ pool.on('connect', () => {
 
 const createTables = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
-  loansTable(
+  users(
     id serial PRIMARY KEY,
     email VARCHAR(50) NOT NULL,
-    createdOn TIMESTAMP,
-    status VARCHAR(10),
-    repaid VARCHAR(10),
-    tenor INT NOT NULL,
-    amount FLOAT(2) NOT NULL,
-    paymentInstallment FLOAT(2),
-    balance FLOAT(2),
-    interest FLOAT(2) 
+    firstName VARCHAR(15) NOT NULL,
+    lastName VARCHAR(15),
+    password VARCHAR(50),
+    address VARCHAR(30) NOT NULL,
+    status VARCHAR(10) NOT NULL,
+    isAdmin VARCHAR(7) NOT NULL,
+    dateJoined TIMESTAMP 
   )`;
 
   pool.query(queryText)
