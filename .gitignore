@@ -4,5 +4,3 @@ node_modules/
 #nyc output
 .nyc_output
 
-#Environment
-.env
