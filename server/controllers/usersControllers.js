@@ -25,6 +25,26 @@ class Users {
       return res.status(400).send(error);
     }
   }
+
+  static async signin(req, res) {
+    const text = 'SELECT * FROM users WHERE email = $1';
+    const { email } = req.body;
+
+    try {
+      const { rows } = await db.query(text, [email]);
+      if (!rows[0]) {
+        return res.status(400).send({
+          message: 'No account found',
+        });
+      }
+      return res.status(200).send({
+        status: 200,
+        data: rows[0],
+      });
+    } catch (error) {
+      res.status(400).send(error)
+    }
+  }
 }
 
 export default Users;
