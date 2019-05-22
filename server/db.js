@@ -11,7 +11,7 @@ pool.on('connect', () => {
   console.log('connected to the db');
 });
 
-const createTables = () => {
+const createUsersTables = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
   users(
     id serial PRIMARY KEY,
@@ -36,7 +36,7 @@ const createTables = () => {
     });
 };
 
-const dropTables = () => {
+const dropUsersTables = () => {
   const queryText = 'DROP TABLE IF EXISTS loans';
   pool.query(queryText)
     .then((res) => {
@@ -55,8 +55,8 @@ pool.on('remove', () => {
 });
 
 module.exports = {
-  createTables,
-  dropTables,
+  createUsersTables,
+  dropUsersTables,
 };
 
 require('make-runnable');
