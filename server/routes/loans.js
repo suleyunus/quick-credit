@@ -4,7 +4,7 @@ import Auth from '../middlewares/auth';
 
 const router = express.Router();
 
-// router.get('/', loansControllers.getLoans);
+router.get('/', LoansControllers.getAllLoans);
 
 // router.get('/:loanID', loansControllers.getByID);
 

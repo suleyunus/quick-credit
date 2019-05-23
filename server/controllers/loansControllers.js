@@ -39,6 +39,21 @@ class Loans {
       return res.status(400).send(error);
     }
   }
+
+  static async getAllLoans(req, res) {
+    const text = 'SELECT * FROM loans';
+
+    try {
+      const { rows, rowCount } = await db.query(text);
+      return res.status(200).json({
+        status: 200,
+        rows,
+        rowCount,
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }
 }
 
 export default Loans;
