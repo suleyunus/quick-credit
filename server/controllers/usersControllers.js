@@ -23,7 +23,7 @@ class Users {
 
     try {
       const { rows } = await db.query(text, values);
-      const token = AuthHelper.generateToken(rows[0].email);
+      const token = AuthHelper.generateToken(rows[0].email, rows[0].firstname, rows[0].lastname);
       return res.status(201).json({
         status: 201,
         data: token,
@@ -56,7 +56,7 @@ class Users {
         });
       }
 
-      const token = AuthHelper.generateToken(rows[0].email);
+      const token = AuthHelper.generateToken(rows[0].email, rows[0].firstname, rows[0].lastname);
       return res.status(200).json({
         status: 200,
         data: token,

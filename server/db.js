@@ -39,16 +39,18 @@ const createUsersTables = () => {
 const createLoansTables = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
   loans(
-    id serial PRIMARY KEY,
+    loanId serial PRIMARY KEY,
+    firstName VARCHAR(128) NOT NULL,
+    lastName VARCHAR(128) NOT NULL,
     email VARCHAR(128) NOT NULL,
-    createdOn TIMESTAMP NOT NULL,
-    status VARCHAR(10) NOT NULL,
-    repaid VARCHAR(10) NOT NULL,
     tenor INT NOT NULL,
     amount FLOAT(2) NOT NULL,
     paymentInstallment FLOAT(2) NOT NULL,
+    status VARCHAR(10) NOT NULL,
     balance FLOAT(2) NOT NULL,
     interest FLOAT(2) NOT NULL,
+    repaid BOOLEAN NOT NULL,
+    createdOn TIMESTAMP NOT NULL,
     FOREIGN KEY (email) references users (email) ON DELETE CASCADE
   )`;
 
