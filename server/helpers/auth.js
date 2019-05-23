@@ -10,9 +10,11 @@ class AuthHelper {
     return bcrypt.compareSync(password, hashPassword);
   }
 
-  static generateToken(email) {
+  static generateToken(email, firstName, lastName) {
     const token = jwt.sign({
       userEmail: email,
+      userFirstName: firstName,
+      userLastName: lastName,
     },
     process.env.SECRET_KEY, { expiresIn: '3d' });
     return token;
