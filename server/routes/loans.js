@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', LoansControllers.getAllLoans);
 
-// router.get('/:loanID', loansControllers.getByID);
+router.get('/:loanID', LoansControllers.getLoanByID);
 
 router.post('/', Auth.verifyToken, LoansControllers.createLoan);
 
