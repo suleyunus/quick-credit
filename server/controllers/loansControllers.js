@@ -74,6 +74,36 @@ class Loans {
       return res.send(error);
     }
   }
+
+  static async approveReject(req, res) {
+    const queryText = 'SELECT * FROM loans WHERE loanid = $1';
+    const updateText = 'UPDATE loans SET status = $1 WHERE loanid = $2';
+
+    try {
+      const { rows } = await db.query(queryText, [req.params.loanID]);
+
+      if (!rows[0]) {
+        return res.status(404).json({
+          status: 404,
+          message: 'Not Found',
+        });
+      }
+
+      const values = [
+        req.body.status || rows[0].status,
+        req.params.loanID,
+      ];
+
+      const response = await db.query(updateText, values);
+
+      return res.status(200).json({
+        status: 200,
+        data: rows[0],
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }
 }
 
 export default Loans;

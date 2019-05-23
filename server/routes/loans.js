@@ -10,7 +10,7 @@ router.get('/:loanID', LoansControllers.getLoanByID);
 
 router.post('/', Auth.verifyToken, LoansControllers.createLoan);
 
-// router.patch('/:loanID', loansControllers.updateLoanStatus);
+router.patch('/:loanID', LoansControllers.approveReject);
 
 // router.post('/:loanID/repayment', loansControllers.createRepayment);
 
