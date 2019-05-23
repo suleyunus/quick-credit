@@ -1,8 +1,8 @@
 import express from 'express';
-import usersControllers from '../controllers/users';
+import UsersControllers from '../controllers/usersControllers';
 
 const router = express.Router();
 
-router.patch('/:userEmail', usersControllers.verifyStatus);
+router.patch('/:userEmail/verify', UsersControllers.verifyUser);
 
 export default router;
