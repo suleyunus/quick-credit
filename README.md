@@ -12,7 +12,7 @@ Quick Credit is an online lending platform that provides short term soft loans t
 
 ## Motivation
 
-This project has been built in response to the Andela Developer Challenge.
+This project has been built in response to the Andela Developer Challenge, Kigali Cycle 6.
 
 ## Built With
 
@@ -21,7 +21,7 @@ This project was developed with:
 * JavaScript
 * HTML
 * CSS
-* JavaScript Objects as Database
+* PostgreSQL as the Database
 
 ## Code Style
 
@@ -33,8 +33,9 @@ This project uses [eslint](https://eslint.org/), together with the [Airbnb style
 
 ### Prerequisites 
 
-* Text editor
-* Install [node.js](https://nodejs.org/en/) 
+* Text editor such as [VS Code](https://code.visualstudio.com/)
+* Install [node.js](https://nodejs.org/en/)
+* Install [PostgreSQL](https://www.postgresql.org/)
 
 ### Installation 
 
