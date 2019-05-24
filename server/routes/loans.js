@@ -12,7 +12,7 @@ router.post('/', Auth.verifyToken, LoansControllers.createLoan);
 
 router.patch('/:loanID', LoansControllers.approveReject);
 
-// router.post('/:loanID/repayment', loansControllers.createRepayment);
+router.post('/:loanID/repayment', LoansControllers.postPayment);
 
 // router.get('/:loanID/repayments', loansControllers.repaymentHistory);
 
