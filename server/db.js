@@ -65,6 +65,31 @@ const createLoansTables = () => {
     });
 };
 
+const createRepaymentsTables = () => {
+  const queryText = `CREATE TABLE IF NOT EXISTS
+  repayments(
+    id serial PRIMARY KEY,
+    loanId INT NOT NULL,
+    amount FLOAT(2) NOT NULL,
+    monthlyInstallment FLOAT(2) NOT NULL,
+    paidAmount FLOAT(2) NOT NULL,
+    balance FLOAT(2) NOT NULL,
+    createdOn TIMESTAMP NOT NULL,
+    dateModified TIMESTAMP NOT NULL,
+    FOREIGN KEY (loanId) references loans (loanId) ON DELETE CASCADE
+  )`;
+
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+
 const dropUsersTables = () => {
   const queryText = 'DROP TABLE IF EXISTS users';
   pool.query(queryText)
@@ -91,14 +116,29 @@ const dropLoansTables = () => {
     });
 };
 
+const dropRepaymentsTables = () => {
+  const queryText = 'DROP TABLE IF EXISTS repayments';
+  pool.query(queryText)
+    .then((res) => {
+      console.log(res);
+      pool.end();
+    })
+    .catch((err) => {
+      console.log(err);
+      pool.end();
+    });
+};
+
 const createAllTables = () => {
   createUsersTables();
   createLoansTables();
+  createRepaymentsTables();
 };
 
 const dropAllTables = () => {
   dropUsersTables();
   dropLoansTables();
+  dropRepaymentsTables();
 };
 
 pool.on('remove', () => {
@@ -111,6 +151,8 @@ module.exports = {
   dropUsersTables,
   createLoansTables,
   dropLoansTables,
+  createRepaymentsTables,
+  dropRepaymentsTables,
   createAllTables,
   dropAllTables,
 };
