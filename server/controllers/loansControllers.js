@@ -170,6 +170,26 @@ class Loans {
       return res.status(400).send(error);
     }
   }
+
+  static async getRepaymentByID(req, res) {
+    const text = 'SELECT * FROM repayments WHERE loanid = $1';
+
+    try {
+      const { rows } = await db.query(text, [req.params.loanID]);
+      if (!rows[0]) {
+        return res.status(404).json({
+          status: 404,
+          message: 'Not found',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        data: rows[0],
+      });
+    } catch (error) {
+      return res.send(error);
+    }
+  }
 }
 
 export default Loans;
