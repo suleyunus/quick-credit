@@ -104,6 +104,72 @@ class Loans {
       return res.status(400).send(error);
     }
   }
+
+  static async postPayment(req, res) {
+    const queryText = 'SELECT * FROM repayments WHERE loanid = $1';
+    const updateText = 'UPDATE repayments SET balance = $1 WHERE loanid = $2';
+    const paidAmount = parseFloat(req.body.paidAmount);
+
+    try {
+      const { rows } = await db.query(queryText, [req.params.loanID]);
+
+      if (!rows[0]) {
+        const newQueryText = 'SELECT * FROM loans WHERE loanid = $1';
+        const newUpdateText = `INSERT INTO 
+          repayments(loanid, amount, monthlyInstallment, paidAmount, balance, createdOn, dateModified)
+          VALUES($1, $2, $3, $4, $5, $6, $7)
+          returning *`;
+
+        try {
+          const { rows } = await db.query(newQueryText, [req.params.loanID]);
+
+          if (!rows[0]) {
+            return res.status(404).json({
+              status: 404,
+              message: 'No loan matches that ID',
+            });
+          }
+
+
+          const balance = rows[0].balance - paidAmount;
+
+          const values = [
+            rows[0].loanid,
+            rows[0].amount,
+            rows[0].paymentinstallment,
+            paidAmount,
+            balance,
+            rows[0].createdon,
+            moment(new Date()),
+          ];
+
+          const createdPayment = await db.query(newUpdateText, values);
+
+          return res.status(201).json({
+            status: 201,
+            data: rows[0],
+          });
+        } catch (error) {
+          return res.status(400).send(error);
+        }
+      }
+
+      const newBalance = rows[0].balance - parseFloat(req.body.paidAmount);
+
+      const values = [
+        newBalance,
+        req.params.loanID,
+      ];
+
+      const response = await db.query(updateText, values);
+      return res.status(201).json({
+        status: 201,
+        data: response.rows[0],
+      });
+    } catch (error) {
+      return res.status(400).send(error);
+    }
+  }
 }
 
 export default Loans;
