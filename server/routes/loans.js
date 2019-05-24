@@ -14,6 +14,6 @@ router.patch('/:loanID', LoansControllers.approveReject);
 
 router.post('/:loanID/repayment', LoansControllers.postPayment);
 
-// router.get('/:loanID/repayments', loansControllers.repaymentHistory);
+router.get('/:loanID/repayments', LoansControllers.getRepaymentByID);
 
 export default router;
