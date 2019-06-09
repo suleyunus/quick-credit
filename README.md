@@ -10,18 +10,14 @@
 
 Quick Credit is an online lending platform that provides short term soft loans to individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners. 
 
-## Motivation
-
-This project has been built in response to the Andela Developer Challenge, Kigali Cycle 6.
-
 ## Built With
 
 This project was developed with:
-* Express.js
-* JavaScript
-* HTML
-* CSS
-* PostgreSQL as the Database
+* [Express.js](https://expressjs.com/) - The server-side framework used
+* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) - The Scripting language used
+* [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - To structure UI templates
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - To style UI templates
+* [PostgreSQL](https://postgresql.org) - Database to persist data
 
 ## Code Style
 
@@ -47,17 +43,34 @@ git clone https://github.com/suleyunus/quick-credit.git
 ```
 npm install
 ```
-### Running the Server
+## Running the Server
 
 ```
 npm run start:dev
 ```
+Once the server is running, open a REST client of choice (eg [Postman](https://getpostman.com)) to test the API endpoints.
 
-### Running Tests
+## Running Tests
+
+### Unit tests
+
+These test logic to APIs including authentication and validation.
 
 ```
 npm run test
 ```
+
+### Coding style tests
+
+These check for suspicious code
+
+```
+npm run eslint
+```
+
+## Deployment 
+
+This app is yet to be deployed. Follow the project to get instructions on how to deploy on a live system.
 
 ## Features
 
@@ -77,376 +90,30 @@ responsibilities. 
 
 ## API Endpoints
 
-### Entity Specification
-
-1. Users
-```
-{
-  ​“id” ​:​ ​Integer​,  
-  ​“email” ​:​ ​String​, 
-  ​“firstName” ​:​ ​String​, 
-  ​“lastName” ​:​ ​String​, 
-  “password” ​:​ ​String​, 
-  “address” ​:​ ​String​, 
-  ​“status” ​:​ ​String​,​             ​// unverified or verified 
-  “isAdmin” ​:​ ​Boolean​
-} 
-```
-
-2. Loans
-
-```
-{
-  "id” ​:​ ​Integer​,  
-  “user” ​:​ ​String​,               // user email 
-  ​“createdOn” ​:​ ​DateTime​, 
-  ​“status” ​:​ ​String​,             // pending, approved, rejected 
-  “repaid” ​:​ ​Boolean​, 
-  ​“tenor” ​:​ ​Integer​,             // maximum of 12 months 
-  ​“amount” ​:​ ​Float​,   
-  “paymentInstallment” ​:​ ​Float​,  // monthly installment payment = (amount + interest) / tenor 
-  ​“balance” ​:​ ​Float​, 
-  ​“interest”​: ​Float​           // 5% of amount 
-}
-```
-
-3. Repayments
-
-```
-{
-  ​“id” ​:​ ​Integer​,   
-  ​“createdOn” ​:​ ​DateTime​, 
-  “loanId” ​:​ ​Integer​, 
-  ​“amount” ​:​ ​Float​
-}
-```
-
-### API Endpoint Specification
-
-1. ``` POST /api/v1/auth/signup```
-
-Creates User Account
-
-Response Spec
-```
-{
-  “status” ​:​ ​201​,  
-  ​“data” ​:​ ​{ 
-    “token” ​:​ ​ “45erkjherht45495783” 
-    ​“id”​:​ Integer​,     // id of newly created user 
-    ​“firstName”​: ​String​, 
-    ​“lastName”​: ​String​, 
-    ​“email”​: ​String​, 
-    ... 
-  ​}
-}
-```
-
-2. ``` POST /api/v1/signin```
-
-Login a User
-
-Response Spec:
-```
-{
-  "status” ​:​ ​200​, 
-  ​“data” ​:​ ​{ 
-    “token” ​:​ ​ “45erkjherht45495783” 
-    ​“id”​:​ Integer​,     // user id 
-    ​“firstName”​: ​String​, 
-    ​“lastName”​: ​String​, 
-    ​“email”​: ​String​, 
-    ... 
-  ​}
-}
-```
-
-3. ```PATCH  /users/<:user-email>/verify```
-
-Mark a User as Verified
-
-Response Spec:
-```
-{
-  “status” ​:​ ​200​, 
-  ​“data” ​:​ ​{  
-    ​“email” ​:​ ​String​, 
-    ​“firstName” ​:​ ​String​, 
-    ​“lastName” ​:​ ​String​, 
-    “password” ​:​ ​String​, 
-    “address” ​:​ ​String​,   
-    ​“status” ​:​ ​String​, 
-    ... 
-  }
-}
-```
-
-4. ```GET  /loans/<:loan-id>```
-
-Get a Specific Loan Application
-
-Response Spec:
-```
-{
-  “status” ​:​ ​200​, 
-  ​“data” ​:​ ​{ 
-    ​“id” ​:​ ​Integer​,  
-    “user” ​:​ ​String​,   
-    ​“createdOn” ​:​ ​DateTime​, 
-    ​“status” ​:​ ​String​,   
-    “repaid” ​:​ ​Boolean​, 
-    ​“tenor” ​:​ ​Integer​,   
-    ​“amount” ​:​ ​Float​,   
-    “paymentInstallment” ​:​ ​Float​,  
-    ​“balance” ​:​ ​Float​, 
-    “interest” ​:​ ​Float​, 
-    ... 
-  }
-}
-```
-
-5. ```GET  /loans?status=approved&repaid=false```
-
-Get all current loans that are not fully repaid
-
-Response Spec:
-```{
-  “status” ​:​ ​200​, 
-  ​“data” ​:​ ​[ 
-    { 
-      ​“id” ​:​ ​Integer​,  
-      “user” ​:​ ​String​,   
-      ​“createdOn” ​:​ ​DateTime​, 
-      ​“status” ​:​ ​String​,   
-      “repaid” ​:​ ​Boolean​, 
-      ​“tenor” ​:​ ​Integer​,   
-      ​“amount” ​:​ ​Float​,   
-      “paymentInstallment” ​:​ ​Float​,  
-      ​“balance” ​:​ ​Float​, 
-      “interest” ​:​ ​Float​, 
-      ... 
-    }, 
-    { 
-      ​“id” ​:​ ​Integer​,  
-      “user” ​:​ ​String​,   
-      ​“createdOn” ​:​ ​DateTime​, 
-      ​“status” ​:​ ​String​,   
-      “repaid” ​:​ ​Boolean​, 
-      ​“tenor” ​:​ ​Integer​,   
-      ​“amount” ​:​ ​Float​,   
-      “paymentInstallment” ​:​ ​Float​,  
-      ​“balance” ​:​ ​Float​, 
-      ​“interest” ​:​ ​Float​,
-        ... 
-    }, 
-    { 
-      ​“id” ​:​ ​Integer​,  
-      “user” ​:​ ​String​,   
-      ​“createdOn” ​:​ ​DateTime​, 
-      ​“status” ​:​ ​String​,   
-      “repaid” ​:​ ​Boolean​, 
-      ​“tenor” ​:​ ​Integer​,   
-      ​“amount” ​:​ ​Float​,   
-      “paymentInstallment” ​:​ ​Float​,  
-      ​“balance” ​:​ ​Float​, 
-      ​“interest” ​:​ ​Float​, 
-      ... 
-    } 
-  ​]
-}
-```
-
-6. ```GET  /loans?status=approved&repaid=true```
-
-Get all repaid loans
-
-```
-{
-  “status” ​:​ ​200​, 
-  ​“data” ​:​ ​[ 
-    { 
-      ​“id” ​:​ ​Integer​,  
-      “user” ​:​ ​String​,   
-      ​“createdOn” ​:​ ​DateTime​, 
-      ​“status” ​:​ ​String​,   
-      “repaid” ​:​ ​Boolean​, 
-      ​“tenor” ​:​ ​Integer​,   
-      ​“amount” ​:​ ​Float​,   
-      “paymentInstallment” ​:​ ​Float​,  
-      ​“balance” ​:​ ​Float​, 
-      ​“interest” ​:​ ​Float​, 
-      ... 
-    }, 
-    { 
-      ​“id” ​:​ ​Integer​,  
-      “user” ​:​ ​String​,   
-      ​“createdOn” ​:​ ​DateTime​, 
-      ​“status” ​:​ ​String​,   
-      “repaid” ​:​ ​Boolean​, 
-      ​“tenor” ​:​ ​Integer​,   
-      ​“amount” ​:​ ​Float​,   
-      “paymentInstallment” ​:​ ​Float​,  
-      ​“balance” ​:​ ​Float​, 
-      ​“interest” ​:​ ​Float​, 
-      ... 
-    }, 
-    {“id” ​:​ ​Integer​,  
-      “user” ​:​ ​String​,   
-      ​“createdOn” ​:​ ​DateTime​, 
-      ​“status” ​:​ ​String​,   
-      “repaid” ​:​ ​Boolean​, 
-      ​“tenor” ​:​ ​Integer​,   
-      ​“amount” ​:​ ​Float​,   
-      “paymentInstallment” ​:​ ​Float​,  
-      ​“balance” ​:​ ​Float​, 
-      ​“interest” ​:​ ​Float​, 
-      ... 
-    } 
-  ​]
-}
-```
-
-7. ```GET  /loans```
-
-Get all loan applications
-
-```
-{
-  “status” ​:​ ​200​, 
-  ​“data” ​:​ ​[ 
-    { 
-      ​“id” ​:​ ​Integer​,  
-      “user” ​:​ ​String​,   
-      ​“createdOn” ​:​ ​DateTime​, 
-      ​“status” ​:​ ​String​,   
-      “repaid” ​:​ ​Boolean​, 
-      ​“tenor” ​:​ ​Integer​,   
-      ​“amount” ​:​ ​Float​,   
-      “paymentInstallment” ​:​ ​Float​,  
-      ​“balance” ​:​ ​Float​, 
-      ​“interest” ​:​ ​Float​, 
-      ... 
-    }, 
-    { 
-      ​“id” ​:​ ​Integer​,  
-      “user” ​:​ ​String​,   
-      ​“createdOn” ​:​ ​DateTime​, 
-      ​“status” ​:​ ​String​,   
-      “repaid” ​:​ ​Boolean​, 
-      ​“tenor” ​:​ ​Integer​,   
-      ​“amount” ​:​ ​Float​,   
-      “paymentInstallment” ​:​ ​Float​,  
-      ​“balance” ​:​ ​Float​, 
-      ​“interest” ​:​ ​Float​, 
-      ... 
-    }, 
-    { 
-      ​“id” ​:​ ​Integer​,  
-      “user” ​:​ ​String​,   
-      ​“createdOn” ​:​ ​DateTime​, 
-      ​“status” ​:​ ​String​,   
-      “repaid” ​:​ ​Boolean​, 
-      ​“tenor” ​:​ ​Integer​,   
-      ​“amount” ​:​ ​Float​,   
-      “paymentInstallment” ​:​ ​Float​,  
-      ​“balance” ​:​ ​Float​, 
-      ​“interest” ​:​ ​Float​, 
-      ... 
-    } 
-  ​]
-}
-```
-
-8. ```GET  /loans/<:loan-id>/repayments```
-
-View loan repayment history
-
-Response Spec:
-
-```
-{
-  “status” ​:​ ​Integer​, 
-  ​“data” ​:​ ​{ 
-    ​“loanId” ​:​ ​Integer​, 
-    “createdOn” ​:​ ​DateTime​, 
-    ​“monthlyInstallment”​: ​Float​,  // what the user is expected to pay 
-    “amount” ​:​ ​Float​, 
-    ... 
-  }
-}
-```
-
-9. ```POST /loans```
-
-Create a loan application
-
-```
-{
-  “status” ​:​ ​Integer​, 
-  ​“data” ​:​ ​{ 
-    “loanId”​: ​Number​, 
-    ​“firstName”​: ​String​, 
-    ​“lastName”​: ​String​, 
-    ​“email”​: ​String​, 
-    ​“tenor”​: ​String​, 
-    ​“amount” ​:​ ​Float​, 
-    “paymentInstallment” ​:​ ​Float​, 
-    “status” ​:​ ​String​,      // should default to pending 
-    ​“balance” ​:​ ​Float​, 
-    ​“interest” ​:​ ​Float​, 
-    ... 
-  ​}
-}
-```
-
-10. ```PATCH  /loans/<:loan-id>```
-
-Approve or reject a loan application. Specify the status in the request’s body. 
-
-Response Spec:
-
-```
-{
-    
-  “status” ​:​ ​Integer​, 
-  ​“date” ​:​ ​{  
-    ​“loanId” ​:​ ​Integer​, 
-    ​“loanAmount”​: ​Float​, 
-    ​“tenor”​: ​Integer​, 
-    ​“status” ​:​ ​String​,       // approved or rejected 
-    ​“monthlyInstallment” ​:​ ​Float​, 
-    ​“interest” ​:​ ​Float​, 
-    .... 
-  }
-}
-```
-
-11. ```POST  /loans/<:loan-id>/repayment```
-
-Create a loan repayment record
-
-Response Spec:
-
-```
-{
-  ​“status” ​:​ ​Integer​,  
-  ​“data” ​:​ ​{ 
-    ​“id” ​:​ ​Integer​, 
-    “loanId”: ​Integer​,   
-    ​“createdOn” ​:​ ​DateTime​, 
-    “loanId” ​:​ ​Integer​, 
-    ​“amount” ​:​ ​Float​,             // loan amount 
-    ​“monthlyInstallment”​: ​Float​,  // what the user is expected to pay 
-    “paidAmount” ​:​ ​Float​, 
-    ​“balance”​: ​Float​, 
-    ....  
-  }
-}
-```
+This app has the following API endpoints:
+* POST /auth/signup
+* POST /auth/signin
+* PATCH /users/<:user-email>/verify
+* GET /loans/<:loan-id>
+* GET /loans?status=approved&repaid=false
+* GET /loans?status=approved&repaid=true
+* GET /loans 
+* GET /loans/<:loan-id>/repayments
+* POST /loans
+* PATCH /loans/<:loan-id>
+* POST /loans/<:loan-id>/repayment
 
 ## Contributing
 
-While we love contributions, this project doesn't allow contributions. You can fork it, however.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+1. Fork the Project
+2. Create your Feature Branch
+3. Commit your Changes
+4. Push to the Branch 
+5. Open a Pull Request
+
+While contributing to the project, kindly adhere to the [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) and [naming conventions and best practices](https://github.com/andela/bestpractices/wiki/Git-naming-conventions-and-best-practices)
 
 ## Links
 
